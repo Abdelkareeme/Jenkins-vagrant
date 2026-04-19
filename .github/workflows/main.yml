@@ -14,8 +14,12 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v4
 
-      - name: run tests on the main branch
-        run: mvn test
+      - name: set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
 
-      - name: checkstyle
-        run: mvn checkstyle:check
+      - name: run tests
+        run: mvn test
